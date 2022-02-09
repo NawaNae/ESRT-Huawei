@@ -24,9 +24,9 @@
 # python main.py --template MDSR --model MDSR --scale 2+3+4 --n_resblocks 80 --save MDSR --reset --save_models
 
 # Standard benchmarks (Ex. EDSR_baseline_x4)
-# python main.py --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
+# python main.py --template EDSR --model EDSR --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --pre_train download --test_only --self_ensemble
 
-#python main.py --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
+# python main.py --template EDSR --model EDSR --data_test Set5+Set14+B100+Urban100+DIV2K --data_range 801-900 --scale 4 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --pre_train download --test_only --self_ensemble
 
 # Test your own images
 # python main.py --data_test Demo --scale 4 --pre_train download --test_only --save_results
@@ -55,15 +55,17 @@
 #python main.py --template RCAN --save RCAN_BIX8_G10R20P48 --scale 8 --reset --save_results --patch_size 384 --pre_train ../experiment/model/RCAN_BIX2.pt
 
 
+
 ### ESRT
-python main.py --template ESRT --model ESRT --scale 2 --save esrt_x2 --reset --save_models --epochs 50
+# python main.py --template ESRT --model ESRT --scale 2 --save esrt_x2 --reset --save_models --epochs 50
+
+## resume
+# python main.py --template ESRT --model ESRT --scale 2 --load esrt_x2 --save_models --epochs 500 --resume -1
 
 
-# python main.py --template ESRT --model ESRT --scale 2 --pre_train ../experiment/esrt_x2/model/model_8.pt --test_only
-
-
-
+### ESRT test
+python main.py --template ESRT --model ESRT --scale 2 --data_test Set5+Set14+B100+Urban100 --data_range 801-900 --pre_train ../experiment/esrt_x2/model/model_best.pt --test_only
 
 
 ### for ipt
-# python main.py --dir_data ./ --pretrain ./IPT_sr2 --data_test Set5+Set14+B100+Urban100 --scale 2
+# python main.py --template IPT --model IPT --pre_train ../models/IPT_sr2.pt --data_test Set5+Set14+B100+Urban100 --scale 2 --data_range 801-900 --test_only --reset

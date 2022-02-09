@@ -57,5 +57,6 @@ def set_template(args):
         args.n_feats = 32
         args.patch_size = 48
         args.lr = 2e-4
-        args.mlp_dim = 128
+        args.mlp_dim = 256
+
 
